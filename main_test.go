@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 	"time"
 )
@@ -172,8 +173,3 @@ func TestNewShellServer(t *testing.T) {
 		t.Errorf("serverEmpty.allowAllCommands = true, want false")
 	}
 }
-
-// Missing imports
-import (
-	"fmt"
-)
