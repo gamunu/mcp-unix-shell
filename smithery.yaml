@@ -1,0 +1,25 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - allowedCommands
+    properties:
+      allowedCommands:
+        type: string
+        description: Comma-separated list of allowed commands, or "*" to allow all commands.
+        default: "ls,cat,echo,find,pwd"
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => { 
+      return { 
+        command: './server', 
+        args: [`--allowed-commands=${config.allowedCommands}`] 
+      }; 
+    }
+  exampleConfig:
+    allowedCommands: "ls,cat,echo,find,pwd"
